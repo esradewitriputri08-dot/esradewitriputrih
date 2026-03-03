@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Esra Digital Library</title>
+<title>ECH Digital Library</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -91,9 +91,20 @@ nav{
   width:45px;
 }
 
-.logo-area h2{
-  color:#fff;
-  font-weight:500;
+.brand{
+  display:flex;
+  flex-direction:column;
+}
+
+.brand h2{
+  font-size:20px;
+  margin:0;
+}
+
+.tagline{
+  font-size:12px;
+  opacity:0.8;
+  letter-spacing:1px;
 }
 
 .hamburger{
@@ -101,7 +112,7 @@ nav{
   cursor:pointer;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero{
   position:relative;
   min-height:100vh;
@@ -125,7 +136,7 @@ nav{
   opacity:0.9;
 }
 
-/* SEARCH BOX */
+/* SEARCH */
 .search-box{
   display:flex;
   background:rgba(255,255,255,0.2);
@@ -181,8 +192,18 @@ nav{
   right:0;
 }
 
+.close-btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:22px;
+  cursor:pointer;
+  color:#333;
+}
+
 .sidebar h3{
   margin-bottom:20px;
+  margin-top:20px;
 }
 
 .sidebar ul{
@@ -229,7 +250,7 @@ footer{
 
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- LOGIN -->
 <div id="loginPage">
   <div class="login-box">
     <h2>Pendaftaran Anggota</h2>
@@ -249,7 +270,10 @@ footer{
 <nav>
   <div class="logo-area">
     <img src="logo.png" alt="Logo">
-    <h2>Esra Digital Library</h2>
+    <div class="brand">
+      <h2>ECH Digital Library</h2>
+      <span class="tagline">Electronic Center for Knowledge</span>
+    </div>
   </div>
   <div class="hamburger" onclick="toggleMenu()">
     <i class="fas fa-bars"></i>
@@ -277,13 +301,17 @@ footer{
 </div>
 
 <footer>
-  © 2026 Esra Dewi Tri Putri Hutauruk
+  © 2026 ECH Digital Library
 </footer>
 
 </div>
 
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
+  <div class="close-btn" onclick="toggleMenu()">
+    <i class="fas fa-times"></i>
+  </div>
+
   <h3>MENU</h3>
   <ul>
     <li><a href="#">Beranda</a></li>
@@ -306,6 +334,20 @@ function login(event){
 function toggleMenu(){
   document.getElementById("sidebar").classList.toggle("active");
 }
+
+/* Klik luar sidebar untuk menutup */
+document.addEventListener("click", function(event){
+  const sidebar = document.getElementById("sidebar");
+  const hamburger = document.querySelector(".hamburger");
+
+  if(
+    sidebar.classList.contains("active") &&
+    !sidebar.contains(event.target) &&
+    !hamburger.contains(event.target)
+  ){
+    sidebar.classList.remove("active");
+  }
+});
 </script>
 
 </body>
